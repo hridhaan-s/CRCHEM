@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CR Chemistry | Chhaya Rastogi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --p: #5B21B6;
+  --p2: #7C3AED;
+  --pale: #F5F3FF;
+  --border: #E5E7EB;
+  --text: #111827;
+  --muted: #6B7280;
+  --light: #9CA3AF;
+  --bg: #FFFFFF;
+  --bg2: #FAFAFA;
+}
+
+body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #fff; border-bottom: 1px solid var(--border);
+  padding: 0 6vw; height: 62px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--p); color: #fff;
+  font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  letter-spacing: 0.3px;
+}
+.logo-name { font-weight: 600; font-size: 15px; color: var(--text); }
+.logo-name span { font-weight: 400; color: var(--muted); font-size: 13px; display: block; line-height: 1.1; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color .15s; }
+.nav-links a:hover { color: var(--p); }
+.nav-btn {
+  background: var(--p); color: #fff !important;
+  padding: 8px 18px; border-radius: 7px;
+  font-size: 13px !important; font-weight: 600 !important;
+}
+.nav-btn:hover { background: var(--p2) !important; color: #fff !important; }
+
+/* HERO */
+.hero {
+  padding: 80px 6vw 72px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 48px; max-width: 1100px; margin: 0 auto;
+}
+.hero-left { max-width: 560px; }
+.hero-eyebrow {
+  display: inline-block;
+  background: var(--pale); color: var(--p);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 6px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 400; line-height: 1.18;
+  color: var(--text); margin-bottom: 18px;
+}
+.hero h1 i { font-style: italic; color: var(--p); }
+.hero p { font-size: 16px; color: var(--muted); line-height: 1.75; margin-bottom: 32px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-main {
+  background: var(--p); color: #fff;
+  padding: 12px 28px; border-radius: 8px;
+  font-weight: 600; font-size: 14px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background .15s;
+}
+.btn-main:hover { background: var(--p2); }
+.btn-out {
+  background: #fff; color: var(--p);
+  padding: 12px 28px; border-radius: 8px;
+  font-weight: 600; font-size: 14px;
+  text-decoration: none;
+  border: 1.5px solid #DDD6FE;
+  transition: border-color .15s, background .15s;
+}
+.btn-out:hover { border-color: var(--p); background: var(--pale); }
+.hero-stats {
+  display: flex; gap: 32px; margin-top: 40px;
+  padding-top: 32px; border-top: 1px solid var(--border);
+}
+.stat-n { font-size: 1.6rem; font-weight: 700; color: var(--p); line-height: 1; }
+.stat-l { font-size: 12px; color: var(--light); font-weight: 500; margin-top: 3px; text-transform: uppercase; letter-spacing: .8px; }
+
+/* TEACHER CARD */
+.teacher-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px 28px;
+  text-align: center; min-width: 240px;
+  flex-shrink: 0;
+}
+.t-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--p); color: #fff;
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.8rem; font-weight: 400;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+.t-name { font-weight: 700; font-size: 16px; color: var(--text); margin-bottom: 3px; }
+.t-sub { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+.t-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.t-tag {
+  background: var(--pale); color: var(--p);
+  font-size: 11px; font-weight: 600;
+  padding: 4px 10px; border-radius: 5px;
+}
+
+/* SECTIONS */
+.section { padding: 72px 6vw; border-bottom: 1px solid var(--border); }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.sec-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--p); margin-bottom: 8px;
+}
+.sec-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 400; color: var(--text);
+  margin-bottom: 10px; line-height: 1.25;
+}
+.sec-sub { font-size: 15px; color: var(--muted); max-width: 520px; margin-bottom: 40px; line-height: 1.7; }
+
+/* COURSES */
+#courses { background: var(--bg2); }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.course-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px;
+  transition: border-color .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.course-card:hover { border-color: #C4B5FD; box-shadow: 0 4px 20px rgba(91,33,182,0.08); }
+.course-card.dark {
+  background: var(--p); border-color: var(--p);
+  color: #fff;
+}
+.course-card.dark:hover { background: var(--p2); border-color: var(--p2); box-shadow: 0 4px 24px rgba(91,33,182,0.25); }
+.c-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.c-icon { font-size: 28px; }
+.c-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: .6px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 5px;
+}
+.tag-hot { background: #FEE2E2; color: #B91C1C; }
+.tag-pop { background: #FEF3C7; color: #92400E; }
+.tag-new { background: #D1FAE5; color: #065F46; }
+.tag-feat { background: rgba(255,255,255,0.2); color: #fff; }
+.c-name { font-weight: 700; font-size: 16px; margin-bottom: 6px; color: var(--text); }
+.course-card.dark .c-name { color: #fff; }
+.c-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+.course-card.dark .c-desc { color: rgba(255,255,255,0.7); }
+.c-list { list-style: none; margin-bottom: 20px; display: flex; flex-direction: column; gap: 7px; }
+.c-list li { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.course-card.dark .c-list li { color: rgba(255,255,255,0.75); }
+.c-check { width: 16px; height: 16px; border-radius: 50%; background: var(--pale); color: var(--p); font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.course-card.dark .c-check { background: rgba(255,255,255,0.2); color: #fff; }
+.c-foot { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); }
+.course-card.dark .c-foot { border-top-color: rgba(255,255,255,0.15); }
+.c-price { font-weight: 700; font-size: 1.2rem; color: var(--p); }
+.course-card.dark .c-price { color: #fff; }
+.c-price s { font-size: 12px; color: var(--light); font-weight: 400; margin-left: 5px; }
+.course-card.dark .c-price s { color: rgba(255,255,255,0.4); }
+.c-btn {
+  background: var(--p); color: #fff;
+  border: none; padding: 9px 20px;
+  border-radius: 7px; font-size: 13px;
+  font-weight: 600; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background .15s;
+}
+.c-btn:hover { background: var(--p2); }
+.course-card.dark .c-btn { background: #fff; color: var(--p); }
+.course-card.dark .c-btn:hover { background: #EDE9FE; }
+
+/* NOTES */
+.notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.note-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px;
+  transition: border-color .2s; cursor: pointer;
+}
+.note-card:hover { border-color: #C4B5FD; }
+.n-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--p); margin-bottom: 8px; }
+.n-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 5px; line-height: 1.4; }
+.n-meta { font-size: 12px; color: var(--light); margin-bottom: 16px; }
+.n-foot { display: flex; align-items: center; justify-content: space-between; }
+.n-price { font-weight: 700; font-size: 15px; color: var(--p); }
+.n-btn {
+  background: var(--pale); color: var(--p);
+  border: 1px solid #DDD6FE; padding: 6px 14px;
+  border-radius: 6px; font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: background .15s, color .15s;
+}
+.n-btn:hover { background: var(--p); color: #fff; border-color: var(--p); }
+
+/* WHY */
+#why { background: #fff; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.why-card { padding: 24px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); }
+.why-n { font-size: 11px; font-weight: 700; color: var(--p); letter-spacing: 1px; margin-bottom: 10px; }
+.why-title { font-weight: 700; font-size: 15px; color: var(--text); margin-bottom: 7px; }
+.why-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* REVIEWS */
+#reviews { background: var(--bg2); }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.review-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 22px; }
+.r-stars { color: #F59E0B; font-size: 13px; letter-spacing: 2px; margin-bottom: 10px; }
+.r-text { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+.r-user { display: flex; align-items: center; gap: 10px; }
+.r-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--p); color: #fff;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.r-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.r-detail { font-size: 11px; color: var(--light); }
+
+/* FOOTER */
+footer { background: #111827; padding: 52px 6vw 32px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.f-brand-name { font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 4px; }
+.f-brand-sub { font-size: 13px; color: #6B7280; line-height: 1.65; max-width: 260px; margin-top: 10px; }
+.f-head { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9CA3AF; margin-bottom: 14px; }
+.f-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.f-links a { font-size: 13px; color: #6B7280; text-decoration: none; transition: color .15s; }
+.f-links a:hover { color: #C4B5FD; }
+.footer-bottom { padding-top: 24px; border-top: 1px solid #1F2937; display: flex; justify-content: space-between; font-size: 12px; color: #4B5563; flex-wrap: wrap; gap: 8px; }
+
+/* MODAL */
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 999; align-items: center; justify-content: center; padding: 16px; }
+.overlay.on { display: flex; }
+.modal { background: #fff; border-radius: 16px; width: 100%; max-width: 460px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.2); animation: up .25s ease; }
+@keyframes up { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.m-head { background: var(--p); padding: 28px 28px 24px; position: relative; }
+.m-label { font-size: 11px; font-weight: 600; color: #C4B5FD; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.m-title { font-family: 'Instrument Serif', serif; font-size: 1.35rem; color: #fff; font-weight: 400; }
+.m-sub { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+.m-x { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.15); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+.m-x:hover { background: rgba(255,255,255,0.25); }
+.m-body { padding: 28px; }
+.f-group { margin-bottom: 16px; }
+.f-group label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 6px; letter-spacing: .4px; }
+.f-group input, .f-group select {
+  width: 100%; padding: 11px 14px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text);
+  background: #fff; outline: none;
+  transition: border-color .15s;
+  appearance: auto;
+}
+.f-group input:focus, .f-group select:focus { border-color: var(--p); box-shadow: 0 0 0 3px rgba(91,33,182,0.08); }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.f-submit {
+  width: 100%; background: var(--p); color: #fff; border: none;
+  padding: 13px; border-radius: 8px; font-family: 'Inter', sans-serif;
+  font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 4px;
+  transition: background .15s;
+}
+.f-submit:hover { background: var(--p2); }
+.f-note { text-align: center; font-size: 12px; color: var(--light); margin-top: 10px; }
+.success { display: none; text-align: center; padding: 8px 0; }
+.s-icon { width: 60px; height: 60px; border-radius: 50%; background: #22C55E; color: #fff; font-size: 28px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.s-title { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: var(--text); margin-bottom: 8px; }
+.s-msg { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+@media (max-width: 860px) {
+  .hero { flex-direction: column; padding: 56px 6vw 52px; }
+  .teacher-card { width: 100%; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 24px; }
+  nav ul { display: none; }
+  .f-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">CR</div>
+    <div>
+      <div class="logo-name">CR Chemistry</div>
+      <span style="font-size:11px;color:#9CA3AF;">by Chhaya Rastogi</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#notes">Notes</a></li>
+    <li><a href="#why">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#courses" class="nav-btn">Enroll Now</a></li>
+  </ul>
+</nav>
+
+<div style="max-width:1100px;margin:0 auto;">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Trusted by 12,000+ students across India</div>
+      <h1>Chemistry that<br>actually <i>makes sense.</i></h1>
+      <p>Chhaya Ma'am's concept-first approach has helped thousands crack JEE, NEET, and score 95+ in boards. No rote learning. Real understanding.</p>
+      <div class="hero-btns">
+        <a href="#courses" class="btn-main">See All Courses</a>
+        <a href="#notes" class="btn-out">Browse Notes</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-n">12K+</div><div class="stat-l">Students</div></div>
+        <div><div class="stat-n">800+</div><div class="stat-l">Selections</div></div>
+        <div><div class="stat-n">15 Yrs</div><div class="stat-l">Experience</div></div>
+        <div><div class="stat-n">4.9★</div><div class="stat-l">Rating</div></div>
+      </div>
+    </div>
+    <div class="teacher-card">
+      <div class="t-avatar">CR</div>
+      <div class="t-name">Chhaya Rastogi</div>
+      <div class="t-sub">M.Sc Chemistry · 15+ Years Teaching</div>
+      <div class="t-tags">
+        <span class="t-tag">JEE Expert</span>
+        <span class="t-tag">NEET Specialist</span>
+        <span class="t-tag">CBSE Boards</span>
+        <span class="t-tag">Result Driven</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="courses">
+  <div class="section-inner">
+    <div class="sec-label">Courses</div>
+    <h2 class="sec-title">Pick your batch.</h2>
+    <p class="sec-sub">Five focused batches — each built around a specific exam and class. No unnecessary content, no filler.</p>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="course-card dark" onclick="openModal('NEET 2027 Batch','Full 2-year Chemistry prep for NEET 2027 — Physical, Organic & Inorganic.')">
+        <div class="c-top"><div class="c-icon">🧬</div><span class="c-tag tag-feat">Most Popular</span></div>
+        <div class="c-name">NEET 2027 Batch</div>
+        <div class="c-desc">Full 2-year program. Every chapter, every concept — Physical, Organic & Inorganic covered with NEET-specific depth.</div>
+        <ul class="c-list">
+          <li><span class="c-check">✓</span>380+ video lectures</li>
+          <li><span class="c-check">✓</span>30 full mock tests — NEET pattern</li>
+          <li><span class="c-check">✓</span>Weekly live doubt sessions</li>
+          <li><span class="c-check">✓</span>Notes + revision sheets included</li>
+        </ul>
+        <div class="c-foot">
+          <div class="c-price">₹4,999 <s>₹9,999</s></div>
+          <button class="c-btn" onclick="event.stopPropagation();openModal('NEET 2027 Batch','Full 2-year NEET Chemistry preparation.')">Enroll →</button>
+        </div>
+      </div>
+
+      <div class="course-card dark" onclick="openModal('JEE 2027 Batch','JEE Mains + Advanced Chemistry — deep concepts, numericals, organic mechanisms.')">
+        <div class="c-top"><div class="c-icon">⚗️</div><span class="c-tag tag-feat">High Demand</span></div>
+        <div class="c-name">JEE 2027 Batch</div>
+        <div class="c-desc">Mains + Advanced both covered. Numerical mastery, reaction mechanisms, and exam strategy built in from day one.</div>
+        <ul class="c-list">
+          <li><span class="c-check">✓</span>400+ lectures — Mains + Advanced</li>
+          <li><span class="c-check">✓</span>40 mock tests + chapter tests</li>
+          <li><span class="c-check">✓</span>Advanced organic mechanism sessions</li>
+          <li><span class="c-check">✓</span>1-on-1 mentoring for top performers</li>
+        </ul>
+        <div class="c-foot">
+          <div class="c-price">₹5,499 <s>₹10,999</s></div>
+          <button class="c-btn" onclick="event.stopPropagation();openModal('JEE 2027 Batch','JEE Mains + Advanced Chemistry 2027.')">Enroll →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="course-card" onclick="openModal('Class 11 Batch','Build the chemistry foundation that makes Class 12 and JEE/NEET feel easy.')">
+        <div class="c-top"><div class="c-icon">📘</div><span class="c-tag tag-new">New Batch</span></div>
+        <div class="c-name">Class 11 Batch</div>
+        <div class="c-desc">The year that sets everything. Build the foundation now — Class 12 and competitive exams become way easier.</div>
+        <ul class="c-list">
+          <li><span class="c-check">✓</span>Full CBSE Class 11 Chemistry</li>
+          <li><span class="c-check">✓</span>Boards + competition dual coverage</li>
+          <li><span class="c-check">✓</span>Chapter worksheets + unit tests</li>
+        </ul>
+        <div class="c-foot">
+          <div class="c-price">₹2,999 <s>₹5,999</s></div>
+          <button class="c-btn" onclick="event.stopPropagation();openModal('Class 11 Batch','Class 11 CBSE Chemistry foundation.')">Enroll →</button>
+        </div>
+      </div>
+
+      <div class="course-card" onclick="openModal('Class 12 Batch','Boards + JEE/NEET together — best of both worlds in one course.')">
+        <div class="c-top"><div class="c-icon">🎓</div><span class="c-tag tag-hot">Limited Seats</span></div>
+        <div class="c-name">Class 12 Batch</div>
+        <div class="c-desc">Board-to-JEE bridge. Nail your 12th boards while simultaneously building competitive exam depth.</div>
+        <ul class="c-list">
+          <li><span class="c-check">✓</span>Full CBSE 12 Chemistry</li>
+          <li><span class="c-check">✓</span>Board writing strategies included</li>
+          <li><span class="c-check">✓</span>Latest CBSE pattern papers</li>
+        </ul>
+        <div class="c-foot">
+          <div class="c-price">₹3,499 <s>₹6,999</s></div>
+          <button class="c-btn" onclick="event.stopPropagation();openModal('Class 12 Batch','Class 12 CBSE Chemistry + JEE/NEET.')">Enroll →</button>
+        </div>
+      </div>
+
+      <div class="course-card" onclick="openModal('Class 10 Batch','Score 95+ in Science. Build the base that makes Class 11 easy.')">
+        <div class="c-top"><div class="c-icon">🔬</div><span class="c-tag tag-pop">Bestseller</span></div>
+        <div class="c-name">Class 10 Batch</div>
+        <div class="c-desc">Strong Class 10 Chemistry = confident Class 11 start. Acids, metals, carbon — all done properly.</div>
+        <ul class="c-list">
+          <li><span class="c-check">✓</span>All Class 10 Chemistry chapters</li>
+          <li><span class="c-check">✓</span>NCERT + previous year boards</li>
+          <li><span class="c-check">✓</span>Quick revision sheets</li>
+        </ul>
+        <div class="c-foot">
+          <div class="c-price">₹1,499 <s>₹2,999</s></div>
+          <button class="c-btn" onclick="event.stopPropagation();openModal('Class 10 Batch','Class 10 CBSE Chemistry.')">Enroll →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="notes" style="background:#fff;">
+  <div class="section-inner">
+    <div class="sec-label">Notes & Worksheets</div>
+    <h2 class="sec-title">Study material that works.</h2>
+    <p class="sec-sub">Exam-exact notes and practice sheets. Instant PDF download after purchase.</p>
+    <div class="notes-grid">
+      <div class="note-card" onclick="openModal('JEE Physical Chemistry Notes','Full Physical Chem for JEE: Thermodynamics, Equilibrium, Electrochemistry.')">
+        <div class="n-label">JEE Notes</div>
+        <div class="n-title">Physical Chemistry — JEE Complete Module</div>
+        <div class="n-meta">280 pages · PDF · Mains + Advanced</div>
+        <div class="n-foot"><div class="n-price">₹349</div><button class="n-btn" onclick="event.stopPropagation();openModal('JEE Physical Chemistry Notes','Full Physical Chem notes for JEE.')">Buy</button></div>
+      </div>
+      <div class="note-card" onclick="openModal('Organic Reactions Master Sheet','All named reactions and mechanisms condensed.')">
+        <div class="n-label">Organic · JEE + NEET</div>
+        <div class="n-title">Organic Reactions Master Sheet</div>
+        <div class="n-meta">120 pages · PDF · Named Reactions + Mechanisms</div>
+        <div class="n-foot"><div class="n-price">₹249</div><button class="n-btn" onclick="event.stopPropagation();openModal('Organic Reactions Master Sheet','Named reactions and mechanisms.')">Buy</button></div>
+      </div>
+      <div class="note-card" onclick="openModal('NEET Inorganic Rapid Revision','Periodic trends, coordination, d-block condensed for NEET.')">
+        <div class="n-label">NEET Notes</div>
+        <div class="n-title">Inorganic Chemistry — NEET Rapid Revision</div>
+        <div class="n-meta">95 pages · PDF · Periodic trends + p/d block</div>
+        <div class="n-foot"><div class="n-price">₹199</div><button class="n-btn" onclick="event.stopPropagation();openModal('NEET Inorganic Rapid Revision','Inorganic condensed for NEET.')">Buy</button></div>
+      </div>
+      <div class="note-card" onclick="openModal('Class 12 CBSE Full Notes','Board-focused notes with model answer formats.')">
+        <div class="n-label">CBSE Class 12</div>
+        <div class="n-title">Full Year CBSE Notes — Class 12</div>
+        <div class="n-meta">320 pages · PDF · Board-exam optimized</div>
+        <div class="n-foot"><div class="n-price">₹299</div><button class="n-btn" onclick="event.stopPropagation();openModal('Class 12 CBSE Full Notes','Board notes for Class 12.')">Buy</button></div>
+      </div>
+      <div class="note-card" onclick="openModal('DPP Sets — JEE & NEET Full Year','50 chapter-wise DPP sheets, 2500+ questions, solutions included.')">
+        <div class="n-label">Worksheets · DPP</div>
+        <div class="n-title">DPP Sets — JEE & NEET (Full Year)</div>
+        <div class="n-meta">50 sheets · 2500+ questions · Solutions included</div>
+        <div class="n-foot"><div class="n-price">₹499</div><button class="n-btn" onclick="event.stopPropagation();openModal('DPP Sets JEE & NEET','Full year DPP practice.')">Buy</button></div>
+      </div>
+      <div class="note-card" onclick="openModal('Class 11 Foundation Worksheets','Chapter-wise worksheets for Class 11 — 3 difficulty levels.')">
+        <div class="n-label">Class 11 · Worksheets</div>
+        <div class="n-title">Class 11 Foundation Practice Worksheets</div>
+        <div class="n-meta">180 pages · Chapter-wise · 3 difficulty levels</div>
+        <div class="n-foot"><div class="n-price">₹199</div><button class="n-btn" onclick="event.stopPropagation();openModal('Class 11 Foundation Worksheets','Chapter-wise practice for Class 11.')">Buy</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="section-inner">
+    <div class="sec-label">Why CR Chemistry</div>
+    <h2 class="sec-title">Not just a teacher.</h2>
+    <p class="sec-sub">A strategy for your rank. The difference between scoring and just studying.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-n">01 — Concept First</div>
+        <div class="why-title">No rote learning</div>
+        <div class="why-desc">Every concept is built from the ground up. You understand the why — not just the what. That's what holds under pressure.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-n">02 — Exam Strategy</div>
+        <div class="why-title">JEE ≠ NEET ≠ Boards</div>
+        <div class="why-desc">Each course mirrors the exact exam pattern. No surprises on exam day — you've already seen everything.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-n">03 — Track Record</div>
+        <div class="why-title">15 years, 800+ selections</div>
+        <div class="why-desc">Not a startup. Not a coaching factory. Every result here was earned by a student who sat in these exact classes.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-n">04 — Accessible</div>
+        <div class="why-title">Doubts never wait</div>
+        <div class="why-desc">Weekly live doubt sessions. WhatsApp support for enrolled students. No question goes unanswered past 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviews" style="background:var(--bg2);">
+  <div class="section-inner">
+    <div class="sec-label">Reviews</div>
+    <h2 class="sec-title">Results don't lie.</h2>
+    <p class="sec-sub">Real students. Real ranks.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <div class="r-text">Chhaya Ma'am's Organic sessions are unmatched. I used to dread mechanisms — now I can derive them from first principles. Scored 59/60 in NEET 2024 Chemistry.</div>
+        <div class="r-user"><div class="r-avatar">AK</div><div><div class="r-name">Ananya Kapoor</div><div class="r-detail">NEET 2024 · AIR 412 · 693/720</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <div class="r-text">The JEE batch DPPs mirror Advanced difficulty perfectly. My Chemistry score jumped from 65 to 94 in Mains within 3 months of joining.</div>
+        <div class="r-user"><div class="r-avatar">RV</div><div><div class="r-name">Rohan Verma</div><div class="r-detail">JEE Mains 2025 · 98.7 percentile</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <div class="r-text">My daughter joined Class 11 not knowing the basics. By Class 12 she was solving JEE-level problems. Scoring 95 in boards was almost a bonus at that point.</div>
+        <div class="r-user"><div class="r-avatar">PS</div><div><div class="r-name">Priya Singh</div><div class="r-detail">Parent · Class 12 · CBSE 95/100</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div class="logo-mark">CR</div>
+          <div class="f-brand-name">CR Chemistry</div>
+        </div>
+        <div class="f-brand-sub">Chhaya Rastogi — trusted chemistry educator for JEE, NEET & CBSE Boards since 2009. Greater Noida, UP.</div>
+      </div>
+      <div>
+        <div class="f-head">Courses</div>
+        <ul class="f-links">
+          <li><a href="#" onclick="openModal('NEET 2027 Batch','Targeting NEET 2027.')">NEET 2027 Batch</a></li>
+          <li><a href="#" onclick="openModal('JEE 2027 Batch','Targeting JEE 2027.')">JEE 2027 Batch</a></li>
+          <li><a href="#" onclick="openModal('Class 12 Batch','CBSE Class 12.')">Class 12 Batch</a></li>
+          <li><a href="#" onclick="openModal('Class 11 Batch','CBSE Class 11.')">Class 11 Batch</a></li>
+          <li><a href="#" onclick="openModal('Class 10 Batch','CBSE Class 10.')">Class 10 Batch</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-head">Contact</div>
+        <ul class="f-links">
+          <li><a href="#">+91 98765 43210</a></li>
+          <li><a href="#">crchemistry@gmail.com</a></li>
+          <li><a href="#">WhatsApp Support</a></li>
+          <li><a href="#">Greater Noida, UP</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 CR Chemistry · Chhaya Rastogi. All rights reserved.</span>
+      <span>Built for toppers.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="modal">
+  <div class="modal">
+    <div class="m-head">
+      <div class="m-label">Enrollment</div>
+      <div class="m-title" id="mTitle">NEET 2027 Batch</div>
+      <div class="m-sub" id="mSub">Our team will call you within 2 hours.</div>
+      <button class="m-x" onclick="closeModal()">✕</button>
+    </div>
+    <div class="m-body">
+      <div id="fState">
+        <div class="f-row">
+          <div class="f-group"><label>First Name</label><input id="fn" placeholder="Rahul" type="text"/></div>
+          <div class="f-group"><label>Last Name</label><input id="ln" placeholder="Sharma" type="text"/></div>
+        </div>
+        <div class="f-group"><label>Mobile</label><input id="ph" placeholder="+91 98765 43210" type="tel"/></div>
+        <div class="f-group"><label>Email</label><input id="em" placeholder="rahul@email.com" type="email"/></div>
+        <div class="f-group">
+          <label>Class / Target</label>
+          <select id="cl">
+            <option value="">— Select —</option>
+            <option>Class 10 — Board Prep</option>
+            <option>Class 11 — Foundation</option>
+            <option>Class 12 — Boards + JEE/NEET</option>
+            <option>Dropper — JEE 2027</option>
+            <option>Dropper — NEET 2027</option>
+          </select>
+        </div>
+        <div class="f-group"><label>City</label><input id="cy" placeholder="Greater Noida, Delhi…" type="text"/></div>
+        <button class="f-submit" onclick="submitForm()">Reserve My Seat 🔒</button>
+        <div class="f-note">No payment now · Our team calls to confirm</div>
+      </div>
+      <div class="success" id="sState">
+        <div class="s-icon">✓</div>
+        <div class="s-title">You're in!</div>
+        <div class="s-msg">Chhaya Ma'am's team will call within 2 hours to confirm your enrollment. Welcome to CR Chemistry.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(t, s) {
+  document.getElementById('mTitle').textContent = t;
+  document.getElementById('mSub').textContent = s;
+  document.getElementById('modal').classList.add('on');
+  document.getElementById('fState').style.display = 'block';
+  document.getElementById('sState').style.display = 'none';
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+function submitForm() {
+  const v = ['fn','ph','em','cl'].map(id => document.getElementById(id).value.trim());
+  if (v.some(x => !x)) { alert('Please fill all required fields.'); return; }
+  document.getElementById('fState').style.display = 'none';
+  document.getElementById('sState').style.display = 'block';
+}
+</script>
+</body>
+</html>
